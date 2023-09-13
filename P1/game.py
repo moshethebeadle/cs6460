@@ -14,6 +14,7 @@ class Game:
     def print(self):
         pass
 
+
 class TicTacToe(Game):
     def __init__(self, num_players = 2, size = 3, print_each_move = True):
         # We represent the Tic-Tac-Toe board as a 3x3 array. 
@@ -81,54 +82,3 @@ class TicTacToe(Game):
         print(f'{self.player_to_move}/{self.num_players}')
         for row in range(self.size):
             print(self.board[row])
-
-class GamePlayer:
-    def __init__(self, print_each_move = False):
-        self.print_each_move = print_each_move
-
-    def pick_move(self, moves):
-        pass
-
-    def play_game(self, game):
-        print('Starting Game!')
-        while True:
-            if game.is_game_over():
-                if game.get_winner() == 0:
-                    print("Cat's Game!")
-                else:
-                    print('Game over. Winner: ', game.get_winner())
-                return
-            
-            moves = game.get_valid_moves()
-            
-            mv = self.pick_move(moves)
-            
-            game.make_move(*mv)
-            if self.print_each_move:
-                self.print(game)
-
-    def print(self, game):
-        game.print()
-
-
-
-import random
-
-class RandomGamePlayer(GamePlayer):
-    def __init__(self, print_each_move = False):
-        super().__init__(print_each_move)
-
-    def pick_move(self, moves):
-        return random.choice(moves)
-        
-
-
-def main() -> None:
-    print("hi")
-
-    game = TicTacToe(num_players = 2, size = 3, print_each_move = True)
-    player = RandomGamePlayer(print_each_move = True)
-    player.play_game(game)
-
-if __name__ == '__main__':
-    main()
