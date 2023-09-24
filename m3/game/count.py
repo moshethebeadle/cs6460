@@ -1,11 +1,12 @@
 from game.game import Game
 
 class Count(Game):
-    def __init__(self, goal: int = 5):
+    def __init__(self, goal: int = 5, max_choice: int = 2):
         self.turn = 1
         self.goal = goal
         self.count = 0
         self.winner = None
+        self.max_choice = max_choice
 
     def how_many_players(self) -> int:
         return 2
@@ -22,7 +23,7 @@ class Count(Game):
         return self.winner
 
     def get_valid_moves(self) -> list[tuple]: 
-        return [1, 2]
+        return range(1, self.max_choice + 1)
 
     def make_move(self, *args): 
         self.count += args[0]

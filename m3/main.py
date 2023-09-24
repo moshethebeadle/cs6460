@@ -6,8 +6,8 @@ from picker.random import RandomMovePicker
 from picker.minimax import MinimaxMovePicker
 
 def main() -> None:
-    play_game(Count(), RandomMovePicker())
-    play_game(Count(goal = 5), MinimaxMovePicker(max_depth = 3, print_each_minimax=False))
+    # play_game(Count(), RandomMovePicker())
+    play_game(Count(goal = 50, max_choice=3), MinimaxMovePicker(max_depth = 10, print_each_minimax=False))
     # play_game(TicTacToe(), RandomMovePicker())
     # play_game(TicTacToe(), MinimaxMovePicker(max_depth = 5, print_each_minimax=False))
 
