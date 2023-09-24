@@ -1,5 +1,5 @@
 def indent(depth):
-    s = '\n'
+    s = ""
     for _ in range(depth):
-        s += '\t'
+        s += ' '
     return s
