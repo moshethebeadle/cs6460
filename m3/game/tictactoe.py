@@ -73,6 +73,7 @@ class TicTacToe(Game):
         s = self.indent(num_indent_spaces)
         s += f'{self.player_to_move}/{self.num_players}\t Game Over: {self.done}\tWinner:{self.winner}'
         for row in range(self.size):
+            s += '\n'
             s += self.indent(num_indent_spaces)
             s += str(self.board[row])
         return s

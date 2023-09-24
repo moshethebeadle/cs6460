@@ -1,7 +1,7 @@
 from picker.picker import AbstractMovePicker
 from game.game import Game
 
-def play_game(game: Game, move_picker: AbstractMovePicker, print_each_move = False):
+def play_game(game: Game, move_picker: AbstractMovePicker, print_each_move = True):
     print('\nStarting Game!')
     while True:
         if game.is_game_over():
@@ -14,7 +14,7 @@ def play_game(game: Game, move_picker: AbstractMovePicker, print_each_move = Fal
         mv = move_picker.pick_move(game)
 
         if print_each_move:
-            print(f'Player {game.whose_turn()} chose move {mv}: ')
+            print(f'*Player {game.whose_turn()} chose move {mv}: ')
 
         game.make_move(mv)
 
