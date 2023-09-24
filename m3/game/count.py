@@ -7,7 +7,7 @@ class Count(Game):
         self.count = 0
         self.winner = None
 
-    def num_players(self) -> int:
+    def how_many_players(self) -> int:
         return 2
 
     def is_game_over(self) -> bool: 

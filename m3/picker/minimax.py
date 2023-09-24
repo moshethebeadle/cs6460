@@ -24,7 +24,7 @@ class MinimaxMovePicker(AbstractMovePicker):
         
     # returns best_score, best_move (or None)
     def minimax(self, game: Game, depth: int):
-        if game.num_players() > 2:
+        if game.how_many_players() > 2:
             raise ValueError(f"Can't do minimax with more than 2 players ({self.num_players})")
 
         if self.print_each_minimax:
@@ -48,7 +48,8 @@ class MinimaxMovePicker(AbstractMovePicker):
         # Try all possible moves. 
         for move in game.get_valid_moves():
             print(f"{indent(depth)}evaluating move {move}") 
-            next_game = cp.copy(game)  # copy() is a helper method that clones the current state. 
+            # deep copy the game and make the move.
+            next_game = cp.deepcopy(game)
             next_game.make_move(move) 
             score, _ = self.minimax(next_game, depth + 1) 
             if self.print_each_minimax or score != 0:

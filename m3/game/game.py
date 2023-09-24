@@ -4,7 +4,7 @@ from util import indent
 class Game(ABC):
 
     @abstractmethod
-    def num_players(self) -> int:
+    def how_many_players(self) -> int:
         pass
 
     @abstractmethod

@@ -1,7 +1,7 @@
 from game.game import Game
 
 class TicTacToe(Game):
-    def __init__(self, num_players = 2, size = 3):
+    def __init__(self, num_players: int = 2, size: int = 3):
         # We represent the Tic-Tac-Toe board as a 3x3 array. 
         # We use 0 to represent an empty square, 1 for Player 1's piece, and 2 for Player 2's piece. 
         self.board = []
@@ -17,7 +17,7 @@ class TicTacToe(Game):
         self.winner = 0
         self.done = False
 
-    def num_players(self) -> int:
+    def how_many_players(self) -> int:
         return self.num_players
 
     def whose_turn(self) -> int:
@@ -34,7 +34,7 @@ class TicTacToe(Game):
         # A move is a tuple (row, col). 
         return [(row, col) for row in range(self.size) for col in range(self.size) if self.board[row][col] == 0] 
 
-    def make_move(self, *args): 
+    def make_move(self, args): 
         row, col = args[0], args[1]
         # Make a move at the specified location. 
         # This assumes that the move is valid. 
