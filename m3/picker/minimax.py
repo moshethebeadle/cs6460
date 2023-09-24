@@ -19,11 +19,11 @@ class MinimaxMovePicker(AbstractMovePicker):
         self.print_each_minimax = print_each_minimax
     
     def pick_move(self, game: Game):
-        _, mv = self.minimax(game, 0)
+        _, mv = self.minimax(game, 0, -float('inf'), float('inf'))
         return mv
         
     # returns best_score, best_move (or None)
-    def minimax(self, game: Game, depth: int):
+    def minimax(self, game: Game, depth: int, alpha: int, beta: int):
         if game.how_many_players() > 2:
             raise ValueError(f"Can't do minimax with more than 2 players ({self.num_players})")
 
@@ -52,7 +52,7 @@ class MinimaxMovePicker(AbstractMovePicker):
             # deep copy the game and make the move.
             next_game = cp.deepcopy(game)
             next_game.make_move(move) 
-            score, _ = self.minimax(next_game, depth + 1) 
+            score, _ = self.minimax(next_game, depth + 1, alpha, beta) 
             if self.print_each_minimax: # or score != 0:
                 print(f"{indent(depth)}player {game.whose_turn()}: move {move} returned score {score}")
 
@@ -67,5 +67,15 @@ class MinimaxMovePicker(AbstractMovePicker):
                     print(f"{indent(depth)}better move: {move}")
                 best_score = score 
                 best_moves = [move]
+
+            # Update the alpha/beta values 
+            if game.whose_turn() == 1: 
+                alpha = max(alpha, best_score) 
+            else: 
+                beta = min(beta, best_score) 
+ 
+            # Alpha Beta Pruning condition 
+            if beta <= alpha: 
+                break 
 
         return best_score, best_moves[random.randint(0, len(best_moves)-1)]
