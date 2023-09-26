@@ -12,11 +12,12 @@ def evaluate(game: Game):
     return 0
 
 class MinimaxMovePicker(AbstractMovePicker): 
-    def __init__(self, max_depth = 2, print_each_minimax = True):
+    def __init__(self, max_depth = 2, print_each_minimax = True, prune = True):
         if max_depth <= 0:
             raise ValueError('max depth has to be > 0')
         self.max_depth = max_depth
         self.print_each_minimax = print_each_minimax
+        self.prune = prune
     
     def pick_move(self, game: Game):
         _, mv = self.minimax(game, 0, -float('inf'), float('inf'))
@@ -76,6 +77,12 @@ class MinimaxMovePicker(AbstractMovePicker):
  
             # Alpha Beta Pruning condition 
             if beta <= alpha: 
-                break 
+                if self.print_each_minimax:
+                    print(f"{indent(depth)}Pruning: {beta} <= {alpha}")
+                if self.prune:
+                    break 
+                else:
+                    if self.print_each_minimax:
+                        print(f"{indent(depth)}NOT Pruning due to prune = False")
 
         return best_score, best_moves[random.randint(0, len(best_moves)-1)]

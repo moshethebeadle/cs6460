@@ -22,7 +22,7 @@ class Count(Game):
     def get_winner(self) -> int:
         return self.winner
 
-    def get_valid_moves(self) -> list[tuple]: 
+    def get_valid_moves(self) -> list: 
         return range(1, self.max_choice + 1)
 
     def make_move(self, *args): 
